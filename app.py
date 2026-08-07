@@ -29,18 +29,21 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap');
 
-/* ── Tokens ── */
+/* ── Professional Tokens ── */
 :root {
-  --bk:#0D0D0D; --wh:#FAFAF0; --yw:#FFE500;
-  --rd:#FF3B00; --bl:#00C4FF; --gn:#00E676;
-  --bd:2.5px solid #0D0D0D;
-  --sh:4px 4px 0 #0D0D0D; --sh-lg:6px 6px 0 #0D0D0D;
+  --bk:#0A0A0A; /* Deep Studio Black */
+  --wh:#FFFFFF; /* Pure White */
+  --bg-subtle:#F5F5F5; /* Light Slate Gray */
+  --yt-red:#FF0000; /* YouTube/Creator Red Accent */
+  --bd:2px solid #0A0A0A; /* Sleeker, sharper border */
+  --sh:4px 4px 0 #0A0A0A;
+  --sh-lg:6px 6px 0 #0A0A0A;
   --ff-d:'Space Grotesk',sans-serif;
   --ff-m:'IBM Plex Mono',monospace;
 }
 
 /* ── Global ── */
-.stApp { background:var(--wh) !important; font-family:var(--ff-d); }
+.stApp { background:var(--bg-subtle) !important; font-family:var(--ff-d); }
 #MainMenu,footer { visibility:hidden; }
 .block-container { padding-top:1.5rem !important; max-width:1200px !important; }
 
@@ -48,13 +51,13 @@ st.markdown("""
 [data-testid="stSidebar"] { background:var(--bk) !important; border-right:var(--bd) !important; }
 [data-testid="stSidebar"] * { font-family:var(--ff-m) !important; color:var(--wh) !important; }
 [data-testid="stSidebar"] input {
-  background:var(--yw) !important; color:var(--bk) !important;
+  background:var(--wh) !important; color:var(--bk) !important;
   border:var(--bd) !important; border-radius:0 !important;
 }
 
 /* ── Buttons ── */
 .stButton > button {
-  background:var(--yw) !important; color:var(--bk) !important;
+  background:var(--bk) !important; color:var(--wh) !important;
   border:var(--bd) !important; border-radius:0 !important;
   box-shadow:var(--sh) !important; font-family:var(--ff-d) !important;
   font-weight:800 !important; font-size:.85rem !important;
@@ -64,13 +67,14 @@ st.markdown("""
 }
 .stButton > button:hover {
   transform:translate(-2px,-2px) !important; box-shadow:var(--sh-lg) !important;
-  background:var(--rd) !important; color:var(--wh) !important;
+  background:var(--yt-red) !important; color:var(--wh) !important;
+  border-color:var(--bk) !important;
 }
 .stButton > button:active { transform:translate(2px,2px) !important; box-shadow:none !important; }
 
 /* ── Download buttons ── */
 .stDownloadButton > button {
-  background:var(--bl) !important; color:var(--bk) !important;
+  background:var(--wh) !important; color:var(--bk) !important;
   border:var(--bd) !important; border-radius:0 !important;
   box-shadow:var(--sh) !important; font-family:var(--ff-d) !important;
   font-weight:800 !important; font-size:.8rem !important;
@@ -79,56 +83,55 @@ st.markdown("""
 }
 .stDownloadButton > button:hover {
   transform:translate(-2px,-2px) !important; box-shadow:var(--sh-lg) !important;
+  background:var(--bg-subtle) !important;
 }
 
 /* ── Inputs ── */
 .stTextInput input, .stTextArea textarea {
   border:var(--bd) !important; border-radius:0 !important;
-  background:#fff !important; font-family:var(--ff-m) !important;
+  background:var(--wh) !important; font-family:var(--ff-m) !important;
   color:var(--bk) !important; box-shadow:var(--sh) !important;
 }
 .stSelectbox > div > div {
   border:var(--bd) !important; border-radius:0 !important;
-  box-shadow:var(--sh) !important;
+  box-shadow:var(--sh) !important; background:var(--wh) !important;
 }
 
 /* ── Tabs ── */
 .stTabs [data-baseweb="tab-list"] {
-  gap:4px !important; border-bottom:2.5px solid var(--bk) !important;
+  gap:4px !important; border-bottom:2px solid var(--bk) !important;
   background:transparent !important;
 }
 .stTabs [data-baseweb="tab"] {
   border:var(--bd) !important; border-bottom:none !important;
-  background:#fff !important; border-radius:0 !important;
+  background:var(--bg-subtle) !important; border-radius:0 !important;
   font-family:var(--ff-d) !important; font-weight:700 !important;
-  padding:.5rem 1.1rem !important; color:var(--bk) !important;
+  padding:.5rem 1.1rem !important; color:var(--bk) !important; opacity:0.6;
 }
 .stTabs [aria-selected="true"] {
-  background:var(--yw) !important;
+  background:var(--wh) !important; color:var(--bk) !important; opacity:1;
   box-shadow:3px -3px 0 var(--bk) !important;
 }
 .stTabs [data-baseweb="tab-panel"] {
   border:var(--bd) !important; border-top:none !important;
-  padding:1.5rem !important; background:#fff !important;
+  padding:1.5rem !important; background:var(--wh) !important;
   box-shadow:var(--sh) !important;
 }
 
-/* ── Alerts ── */
-.stSuccess { border:var(--bd) !important; border-radius:0 !important; border-left:5px solid var(--gn) !important; }
-.stInfo    { border:var(--bd) !important; border-radius:0 !important; border-left:5px solid var(--bl) !important; }
-.stWarning { border:var(--bd) !important; border-radius:0 !important; border-left:5px solid var(--yw) !important; }
-.stError   { border:var(--bd) !important; border-radius:0 !important; border-left:5px solid var(--rd) !important; }
+/* ── Alerts & Metrics ── */
+.stSuccess, .stInfo, .stWarning, .stError {
+  border:var(--bd) !important; border-radius:0 !important; background:var(--wh) !important;
+}
+.stSuccess { border-left:5px solid var(--bk) !important; }
+.stError { border-left:5px solid var(--yt-red) !important; }
 
-/* ── Metrics ── */
 [data-testid="stMetric"] {
   border:var(--bd) !important; padding:.8rem 1rem !important;
-  box-shadow:var(--sh) !important; background:#fff !important;
+  box-shadow:var(--sh) !important; background:var(--wh) !important;
 }
-[data-testid="stMetricValue"] { font-family:var(--ff-d) !important; font-weight:800 !important; }
+[data-testid="stMetricValue"] { font-family:var(--ff-d) !important; font-weight:800 !important; color:var(--yt-red) !important; }
 [data-testid="stMetricLabel"] { font-family:var(--ff-m) !important; }
-
-/* ── HR ── */
-hr { border:1.5px solid var(--bk) !important; margin:1.5rem 0 !important; }
+hr { border:1px solid var(--bk) !important; margin:1.5rem 0 !important; opacity:0.2; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -136,24 +139,21 @@ hr { border:1.5px solid var(--bk) !important; margin:1.5rem 0 !important; }
 # ── HEADER BANNER ────────────────────────────────────────────────────────────
 
 st.markdown("""
-<div style="background:#FFE500;border:2.5px solid #0D0D0D;box-shadow:6px 6px 0 #0D0D0D;
-            padding:2rem 2.5rem;margin-bottom:2rem;position:relative;overflow:hidden;">
-  <div style="position:absolute;top:-25px;right:-25px;width:110px;height:110px;
-              background:#FF3B00;border:2.5px solid #0D0D0D;transform:rotate(20deg);opacity:.45;"></div>
-  <div style="position:absolute;bottom:-30px;left:240px;width:75px;height:75px;
-              background:#00C4FF;border:2.5px solid #0D0D0D;transform:rotate(-12deg);opacity:.4;"></div>
-  <div style="position:absolute;top:15px;right:140px;width:45px;height:45px;
-              background:#0D0D0D;transform:rotate(8deg);opacity:.15;"></div>
+<div style="background:#FFFFFF;border:2px solid #0A0A0A;box-shadow:6px 6px 0 #0A0A0A;
+            padding:2.5rem;margin-bottom:2rem;position:relative;overflow:hidden;
+            background-image: radial-gradient(#E0E0E0 1px, transparent 1px);
+            background-size: 20px 20px;">
   <span style="font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:700;
-               background:#0D0D0D;color:#FFE500;padding:.15rem .6rem;letter-spacing:.15em;">
-    GEMINI 2.5 FLASH ▸ MULTI-CHAIN AI ▸ PYDANTIC OUTPUT
+               background:#0A0A0A;color:#FFFFFF;padding:.2rem .8rem;letter-spacing:.15em;
+               text-transform:uppercase;">
+    <span style="color:#FF0000;">●</span> STUDIO DASHBOARD
   </span>
-  <div style="font-family:'Space Grotesk',sans-serif;font-size:2.7rem;font-weight:900;
-              color:#0D0D0D;margin:.4rem 0 0;line-height:1;letter-spacing:-.04em;">
-    📺 YT CONTENT<br>PLANNER PRO
+  <div style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:900;
+              color:#0A0A0A;margin:.6rem 0 0;line-height:1;letter-spacing:-.04em;">
+    YT CONTENT<br>PLANNER PRO
   </div>
-  <div style="font-family:'IBM Plex Mono',monospace;font-size:.8rem;color:#0D0D0D;
-              margin:.8rem 0 0;opacity:.7;">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:.85rem;color:#0A0A0A;
+              margin:1rem 0 0;opacity:.8;font-weight:500;">
     Ideas → Script → Hooks → Strategy → Export. All in one shot.
   </div>
 </div>
@@ -178,7 +178,7 @@ for k, v in _defaults.items():
 with st.sidebar:
     st.markdown(
         '<p style="font-family:\'IBM Plex Mono\',monospace;font-size:.7rem;'
-        'letter-spacing:.15em;color:#FFE500;margin-bottom:.4rem;">▶ API CONFIG</p>',
+        'letter-spacing:.15em;color:#FF0000;margin-bottom:.4rem;">▶ API CONFIG</p>',
         unsafe_allow_html=True,
     )
 
@@ -199,8 +199,8 @@ with st.sidebar:
 
     st.markdown("---")
     st.markdown("""
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#FAFAF0;line-height:1.9;">
-      <p style="letter-spacing:.12em;color:#FFE500;margin-bottom:.5rem;">▶ WORKFLOW</p>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#F5F5F5;line-height:1.9;">
+      <p style="letter-spacing:.12em;color:#FF0000;margin-bottom:.5rem;">▶ WORKFLOW</p>
       <p>① Fill topic &amp; settings</p>
       <p>② Generate content plan</p>
       <p>③ Browse ideas &amp; titles</p>
@@ -212,7 +212,7 @@ with st.sidebar:
 
     st.markdown("---")
     st.markdown("""
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#FAFAF0;opacity:.45;line-height:1.6;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:#F5F5F5;opacity:.45;line-height:1.6;">
       Deploy tip: add GOOGLE_API_KEY to<br>.streamlit/secrets.toml to skip<br>entering it every session.
     </div>
     """, unsafe_allow_html=True)
@@ -277,7 +277,7 @@ def clean_json(raw: str) -> dict:
             raw = raw[4:]
     return json.loads(raw.strip())
 
-def badge(label: str, bg: str = "#0D0D0D", fg: str = "#FFE500") -> str:
+def badge(label: str, bg: str = "#0A0A0A", fg: str = "#FFFFFF") -> str:
     return (
         f'<span style="font-family:\'IBM Plex Mono\',monospace;font-size:.68rem;'
         f'font-weight:700;letter-spacing:.14em;background:{bg};color:{fg};'
@@ -287,15 +287,15 @@ def badge(label: str, bg: str = "#0D0D0D", fg: str = "#FFE500") -> str:
 def section_card(step_label: str, step_bg: str, step_fg: str, title: str, subtitle: str = "") -> str:
     sub = (
         f'<div style="font-family:\'IBM Plex Mono\',monospace;font-size:.76rem;'
-        f'color:#0D0D0D;opacity:.6;margin-top:.3rem;">{subtitle}</div>'
+        f'color:#0A0A0A;opacity:.6;margin-top:.3rem;">{subtitle}</div>'
         if subtitle else ""
     )
     return (
-        f'<div style="border:2.5px solid #0D0D0D;box-shadow:5px 5px 0 #0D0D0D;'
-        f'padding:1.5rem;background:#fff;margin-bottom:1rem;">'
+        f'<div style="border:2px solid #0A0A0A;box-shadow:5px 5px 0 #0A0A0A;'
+        f'padding:1.5rem;background:#FFFFFF;margin-bottom:1rem;">'
         f'{badge(step_label, step_bg, step_fg)}'
         f'<div style="font-family:\'Space Grotesk\',sans-serif;font-weight:800;'
-        f'font-size:1.3rem;margin:.7rem 0 0;color:#0D0D0D;">{title}</div>'
+        f'font-size:1.3rem;margin:.7rem 0 0;color:#0A0A0A;">{title}</div>'
         f'{sub}</div>'
     )
 
@@ -428,7 +428,7 @@ def script_to_markdown(script: ScriptOutline) -> str:
 
 # ── STEP 1: INPUT ─────────────────────────────────────────────────────────────
 
-st.markdown(section_card("STEP 01 / INPUT", "#0D0D0D", "#FFE500", "What are we creating today?"),
+st.markdown(section_card("STEP 01 / INPUT", "#0A0A0A", "#FFFFFF", "What are we creating today?"),
             unsafe_allow_html=True)
 
 c1, c2 = st.columns([3, 1])
@@ -510,7 +510,7 @@ if st.session_state.content_plan:
 
     st.markdown("---")
     st.markdown(section_card(
-        "STEP 02 / CONTENT PLAN", "#FF3B00", "#fff",
+        "STEP 02 / CONTENT PLAN", "#FF0000", "#FFFFFF",
         "Your Personalised Content Plan",
     ), unsafe_allow_html=True)
 
@@ -525,18 +525,16 @@ if st.session_state.content_plan:
     with tab1:
         st.markdown("### 🧠 10 Video Ideas")
 
-        # Alternating card colors for visual rhythm
-        CARD_BG  = ["#FFE500","#00C4FF","#FAFAF0","#FFE500","#FF3B00",
-                    "#FAFAF0","#00C4FF","#FFE500","#FAFAF0","#00C4FF"]
-        CARD_FG  = ["#0D0D0D","#0D0D0D","#0D0D0D","#0D0D0D","#FFFFFF",
-                    "#0D0D0D","#0D0D0D","#0D0D0D","#0D0D0D","#0D0D0D"]
+        # Clean alternating studio colors
+        CARD_BG  = ["#FFFFFF", "#F5F5F5"] * 5
+        CARD_FG  = ["#0A0A0A"] * 10
 
         col_a, col_b = st.columns(2)
         for i, idea in enumerate(plan.video_ideas):
             with (col_a if i % 2 == 0 else col_b):
                 bg, fg = CARD_BG[i], CARD_FG[i]
                 st.markdown(f"""
-                <div style="border:2.5px solid #0D0D0D;box-shadow:4px 4px 0 #0D0D0D;
+                <div style="border:2px solid #0A0A0A;box-shadow:4px 4px 0 #0A0A0A;
                             padding:1rem;margin-bottom:.8rem;background:{bg};">
                   <span style="font-family:'IBM Plex Mono',monospace;font-size:.62rem;
                                opacity:.55;color:{fg};">IDEA #{i+1:02d}</span>
@@ -551,8 +549,8 @@ if st.session_state.content_plan:
         st.markdown("### 🔍 SEO-Friendly Titles")
         for t in plan.seo_titles:
             st.markdown(f"""
-            <div style="border:2px solid #0D0D0D;padding:.65rem 1rem;margin-bottom:.45rem;
-                        background:#FAFAF0;box-shadow:3px 3px 0 #0D0D0D;
+            <div style="border:2px solid #0A0A0A;padding:.65rem 1rem;margin-bottom:.45rem;
+                        background:#F5F5F5;box-shadow:3px 3px 0 #0A0A0A;
                         font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.92rem;">
               🎯 {t}
             </div>
@@ -561,9 +559,9 @@ if st.session_state.content_plan:
         st.markdown("---")
         st.markdown("### 📝 Ready-to-Use Description")
         st.markdown(f"""
-        <div style="border:2.5px solid #0D0D0D;padding:1rem 1.2rem;background:#F0FFF4;
-                    box-shadow:4px 4px 0 #0D0D0D;font-family:'IBM Plex Mono',monospace;
-                    font-size:.82rem;line-height:1.8;color:#0D0D0D;">
+        <div style="border:2px solid #0A0A0A;padding:1rem 1.2rem;background:#F5F5F5;
+                    box-shadow:4px 4px 0 #0A0A0A;font-family:'IBM Plex Mono',monospace;
+                    font-size:.82rem;line-height:1.8;color:#0A0A0A;">
           {plan.description}
         </div>
         """, unsafe_allow_html=True)
@@ -575,16 +573,16 @@ if st.session_state.content_plan:
         with c_th:
             st.markdown("### 🎨 Thumbnail Mockup Preview")
             st.markdown(f"""
-            <div style="border:2.5px solid #0D0D0D;box-shadow:5px 5px 0 #0D0D0D;overflow:hidden;">
-              <div style="background:#FF3B00;padding:2.5rem 1.5rem;text-align:center;
-                          border-bottom:2.5px solid #0D0D0D;min-height:130px;
+            <div style="border:2px solid #0A0A0A;box-shadow:5px 5px 0 #0A0A0A;overflow:hidden;">
+              <div style="background:#FF0000;padding:2.5rem 1.5rem;text-align:center;
+                          border-bottom:2px solid #0A0A0A;min-height:130px;
                           display:flex;align-items:center;justify-content:center;">
                 <span style="font-family:'Space Grotesk',sans-serif;font-size:1.65rem;
-                             font-weight:900;color:#FFE500;text-transform:uppercase;
-                             line-height:1.1;text-shadow:3px 3px 0 #0D0D0D;
+                             font-weight:900;color:#FFFFFF;text-transform:uppercase;
+                             line-height:1.1;text-shadow:3px 3px 0 #0A0A0A;
                              letter-spacing:-.02em;">{plan.thumbnail.text_overlay}</span>
               </div>
-              <div style="background:#FAFAF0;padding:1rem 1.2rem;">
+              <div style="background:#F5F5F5;padding:1rem 1.2rem;">
                 <div style="margin-bottom:.6rem;">
                   <span style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;
                                opacity:.5;display:block;margin-bottom:.2rem;">VISUAL CONCEPT</span>
@@ -604,16 +602,16 @@ if st.session_state.content_plan:
         with c_ht:
             st.markdown("### # Hashtag Cloud")
             tags_html = "".join([
-                f'<span style="display:inline-block;border:2px solid #0D0D0D;'
-                f'background:{"#FFE500" if i%3==0 else "#00C4FF" if i%3==1 else "#FF3B00"};'
-                f'color:{"#0D0D0D" if i%3 < 2 else "#fff"};'
+                f'<span style="display:inline-block;border:2px solid #0A0A0A;'
+                f'background:{"#FF0000" if i%4==0 else "#FFFFFF" if i%2==0 else "#0A0A0A"};'
+                f'color:{"#FFFFFF" if (i%4==0 or i%2!=0) else "#0A0A0A"};'
                 f'font-family:\'IBM Plex Mono\',monospace;font-size:.72rem;font-weight:700;'
-                f'padding:.28rem .65rem;margin:.22rem;box-shadow:2px 2px 0 #0D0D0D;">{tag}</span>'
+                f'padding:.28rem .65rem;margin:.22rem;box-shadow:2px 2px 0 #0A0A0A;">{tag}</span>'
                 for i, tag in enumerate(plan.hashtags)
             ])
             st.markdown(f"""
-            <div style="border:2.5px solid #0D0D0D;padding:1rem;background:#FAFAF0;
-                        box-shadow:4px 4px 0 #0D0D0D;line-height:2.3;">
+            <div style="border:2px solid #0A0A0A;padding:1rem;background:#F5F5F5;
+                        box-shadow:4px 4px 0 #0A0A0A;line-height:2.3;">
               {tags_html}
             </div>
             """, unsafe_allow_html=True)
@@ -626,15 +624,15 @@ if st.session_state.content_plan:
             st.markdown("### 📅 Upload Schedule")
             days_display = " &nbsp;·&nbsp; ".join(plan.upload_days)
             st.markdown(f"""
-            <div style="border:2.5px solid #0D0D0D;padding:1.4rem;box-shadow:5px 5px 0 #0D0D0D;
-                        background:#FFE500;margin-bottom:1rem;">
+            <div style="border:2px solid #0A0A0A;padding:1.4rem;box-shadow:5px 5px 0 #0A0A0A;
+                        background:#FFFFFF;margin-bottom:1rem;">
               <span style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;opacity:.6;
                            display:block;margin-bottom:.4rem;">BEST DAYS TO UPLOAD</span>
               <span style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;
                            font-weight:800;">{days_display}</span>
             </div>
-            <div style="border:2.5px solid #0D0D0D;padding:1.4rem;box-shadow:5px 5px 0 #0D0D0D;
-                        background:#00C4FF;">
+            <div style="border:2px solid #0A0A0A;padding:1.4rem;box-shadow:5px 5px 0 #0A0A0A;
+                        background:#F5F5F5;">
               <span style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;opacity:.6;
                            display:block;margin-bottom:.4rem;">OPTIMAL UPLOAD TIME</span>
               <span style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;
@@ -696,7 +694,7 @@ if st.session_state.content_plan:
 
     st.markdown("---")
     st.markdown(section_card(
-        "STEP 03 / DEEP-DIVE", "#00C4FF", "#0D0D0D",
+        "STEP 03 / DEEP-DIVE", "#0A0A0A", "#FFFFFF",
         "Pick a Winning Idea → Build the Full Script",
         "Select one idea and let AI generate a timestamped script outline + 3-second retention hooks.",
     ), unsafe_allow_html=True)
@@ -730,13 +728,13 @@ if st.session_state.content_plan:
         script: ScriptOutline = st.session_state.script_data
 
         st.markdown(f"""
-        <div style="border:2.5px solid #0D0D0D;padding:1.5rem;margin:1rem 0;
-                    background:#fff;box-shadow:5px 5px 0 #0D0D0D;">
-          {badge("SCRIPT OUTLINE", "#0D0D0D", "#FFE500")}
+        <div style="border:2px solid #0A0A0A;padding:1.5rem;margin:1rem 0;
+                    background:#fff;box-shadow:5px 5px 0 #0A0A0A;">
+          {badge("SCRIPT OUTLINE", "#0A0A0A", "#FFFFFF")}
           <div style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.25rem;
-                      margin:.5rem 0 .2rem;color:#0D0D0D;">{script.video_title}</div>
+                      margin:.5rem 0 .2rem;color:#0A0A0A;">{script.video_title}</div>
           <div style="font-family:'IBM Plex Mono',monospace;font-size:.73rem;
-                      color:#0D0D0D;opacity:.5;">Duration: {script.total_duration}</div>
+                      color:#0A0A0A;opacity:.5;">Duration: {script.total_duration}</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -752,28 +750,28 @@ if st.session_state.content_plan:
                 unsafe_allow_html=True,
             )
 
-            HOOK_BG = {"Visual": "#FFE500", "Verbal": "#00C4FF", "Text-on-Screen": "#FF3B00"}
-            HOOK_FG = {"Visual": "#0D0D0D", "Verbal": "#0D0D0D", "Text-on-Screen": "#FFFFFF"}
+            HOOK_BG = {"Visual": "#0A0A0A", "Verbal": "#F5F5F5", "Text-on-Screen": "#FF0000"}
+            HOOK_FG = {"Visual": "#FFFFFF", "Verbal": "#0A0A0A", "Text-on-Screen": "#FFFFFF"}
 
             for hook in script.hooks:
-                bg = HOOK_BG.get(hook.hook_type, "#FAFAF0")
-                fg = HOOK_FG.get(hook.hook_type, "#0D0D0D")
+                bg = HOOK_BG.get(hook.hook_type, "#F5F5F5")
+                fg = HOOK_FG.get(hook.hook_type, "#0A0A0A")
                 st.markdown(f"""
-                <div style="border:2.5px solid #0D0D0D;box-shadow:4px 4px 0 #0D0D0D;
+                <div style="border:2px solid #0A0A0A;box-shadow:4px 4px 0 #0A0A0A;
                             margin-bottom:1rem;overflow:hidden;">
-                  <div style="background:{bg};padding:.5rem 1rem;border-bottom:2px solid #0D0D0D;">
+                  <div style="background:{bg};padding:.5rem 1rem;border-bottom:2px solid #0A0A0A;">
                     <span style="font-family:'IBM Plex Mono',monospace;font-size:.68rem;
                                  font-weight:700;color:{fg};letter-spacing:.12em;">
                       {hook.hook_type.upper()} HOOK
                     </span>
                   </div>
-                  <div style="padding:1rem;background:#FAFAF0;">
+                  <div style="padding:1rem;background:#F5F5F5;">
                     <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;
-                              font-size:1rem;margin:0 0 .5rem;color:#0D0D0D;">
+                              font-size:1rem;margin:0 0 .5rem;color:#0A0A0A;">
                       "{hook.hook_text}"
                     </p>
                     <p style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;
-                              color:#0D0D0D;opacity:.65;margin:0;">
+                              color:#0A0A0A;opacity:.65;margin:0;">
                       💡 {hook.why_it_works}
                     </p>
                   </div>
@@ -786,35 +784,35 @@ if st.session_state.content_plan:
 
             for sec in script.sections:
                 cta_block = (
-                    f'<div style="margin-top:.5rem;background:#FFE500;padding:.25rem .6rem;'
-                    f'display:inline-block;border:1.5px solid #0D0D0D;'
+                    f'<div style="margin-top:.5rem;background:#FFFFFF;padding:.25rem .6rem;'
+                    f'display:inline-block;border:1.5px solid #0A0A0A;'
                     f'font-family:\'IBM Plex Mono\',monospace;font-size:.68rem;font-weight:700;">'
                     f'📣 CTA: {sec.cta}</div>'
                 ) if sec.cta else ""
 
                 st.markdown(f"""
-                <div style="border:2px solid #0D0D0D;margin-bottom:.75rem;
-                            overflow:hidden;box-shadow:3px 3px 0 #0D0D0D;">
-                  <div style="background:#0D0D0D;padding:.45rem 1rem;
+                <div style="border:2px solid #0A0A0A;margin-bottom:.75rem;
+                            overflow:hidden;box-shadow:3px 3px 0 #0A0A0A;">
+                  <div style="background:#0A0A0A;padding:.45rem 1rem;
                               display:flex;justify-content:space-between;align-items:center;">
                     <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;
-                                 color:#FFE500;font-size:.9rem;">{sec.section_title}</span>
+                                 color:#FFFFFF;font-size:.9rem;">{sec.section_title}</span>
                     <span style="font-family:'IBM Plex Mono',monospace;font-size:.68rem;
-                                 color:#FAFAF0;opacity:.6;">{sec.timestamp}</span>
+                                 color:#F5F5F5;opacity:.6;">{sec.timestamp}</span>
                   </div>
-                  <div style="padding:.85rem 1rem;background:#FAFAF0;">
+                  <div style="padding:.85rem 1rem;background:#F5F5F5;">
                     <p style="font-family:'IBM Plex Mono',monospace;font-size:.8rem;
-                              color:#0D0D0D;margin:0 0 .4rem;">{sec.content_notes}</p>
+                              color:#0A0A0A;margin:0 0 .4rem;">{sec.content_notes}</p>
                     <p style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;
-                              color:#0D0D0D;opacity:.55;margin:0;">🎬 B-roll: {sec.broll_cue}</p>
+                              color:#0A0A0A;opacity:.55;margin:0;">🎬 B-roll: {sec.broll_cue}</p>
                     {cta_block}
                   </div>
                 </div>
                 """, unsafe_allow_html=True)
 
             st.markdown(f"""
-            <div style="border:2.5px solid #0D0D0D;padding:1rem 1.2rem;background:#FF3B00;
-                        box-shadow:4px 4px 0 #0D0D0D;margin-top:1rem;">
+            <div style="border:2px solid #0A0A0A;padding:1rem 1.2rem;background:#FF0000;
+                        box-shadow:4px 4px 0 #0A0A0A;margin-top:1rem;">
               <span style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;
                            color:#fff;opacity:.7;display:block;margin-bottom:.3rem;">CLOSING CTA</span>
               <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;
@@ -838,7 +836,7 @@ if st.session_state.content_plan:
 st.markdown("---")
 st.markdown("""
 <div style="text-align:center;font-family:'IBM Plex Mono',monospace;font-size:.68rem;
-            opacity:.38;padding:.8rem 0;color:#0D0D0D;">
+            opacity:.38;padding:.8rem 0;color:#0A0A0A;">
   YT CONTENT PLANNER PRO · STREAMLIT + LANGCHAIN + GEMINI 2.5 FLASH
 </div>
 """, unsafe_allow_html=True)
