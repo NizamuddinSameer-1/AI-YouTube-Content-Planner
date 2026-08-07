@@ -21,99 +21,229 @@ st.set_page_config(
 
 
 # ===================== STEP 3: NEO BRUTALISM CSS =====================
+# Design System: Neo Brutalism (UI UX Pro Max)
+# Colors: Cream #FFFDF5, Hot Red #FF6B6B, Vivid Yellow #FFD93D,
+#         Soft Violet #C4B5FD, Pure Black #000000, White #FFFFFF
+# Borders: 4px solid #000000 on all major elements
+# Shadows: Hard offset blocks (no blur) — 4px or 8px
+# Typography: Space Grotesk Bold/Black only (700-900)
+# Radius: 0px (major elements), 999px (badges only)
+# Animations: spring/linear only — NO ease-out
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800;900&display=swap');
 
-/* Base */
-.stApp {
-    background-color: #FFFDF5;
-    font-family: 'Space Grotesk', sans-serif;
+/* ===== RESET & BASE ===== */
+.stApp, .stApp * {
+    font-family: 'Space Grotesk', sans-serif !important;
 }
 
-/* Headers */
+.stApp {
+    background-color: #FFFDF5;
+}
+
+/* ===== HEADERS ===== */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', sans-serif !important;
     font-weight: 900 !important;
     color: #000000 !important;
+    letter-spacing: -0.02em;
 }
 
-/* Title */
-.stTitle {
-    font-size: 2.5rem !important;
+/* ===== TITLE BANNER ===== */
+.main .block-container h1 {
+    font-size: 2.8rem !important;
     font-weight: 900 !important;
     color: #000000 !important;
-    border-bottom: 4px solid #000000;
-    padding-bottom: 8px;
+    background-color: #FFD93D;
+    display: inline-block;
+    padding: 8px 20px;
+    border: 4px solid #000000;
+    box-shadow: 6px 6px 0px #000000;
+    margin-bottom: 8px;
+    transform: rotate(-1deg);
 }
 
-/* Subheaders */
-.stSubheader {
-    font-weight: 700 !important;
+/* ===== SUBHEADERS ===== */
+.main .block-container h2,
+.main .block-container h3 {
+    font-weight: 800 !important;
+    font-size: 1.4rem !important;
     color: #000000 !important;
+    background-color: #C4B5FD;
+    display: inline-block;
+    padding: 6px 16px;
+    border: 3px solid #000000;
+    box-shadow: 4px 4px 0px #000000;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    transform: rotate(1deg);
 }
 
-/* Buttons */
-.stButton > button {
+/* ===== PARAGRAPH TEXT ===== */
+.main .block-container p,
+.main .block-container [data-testid="stMarkdownContainer"] p {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700;
+    color: #000000;
+    font-size: 1rem;
+}
+
+/* ===== PRIMARY BUTTONS (Hot Red) ===== */
+.stButton > button,
+.stButton > button:focus {
     background-color: #FF6B6B;
     color: #000000;
     border: 4px solid #000000;
     border-radius: 0px;
     font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    padding: 12px 24px;
-    box-shadow: 4px 4px 0px #000000;
-    transition: none;
+    font-weight: 900;
+    font-size: 1.05rem;
+    padding: 14px 28px;
+    box-shadow: 6px 6px 0px #000000;
+    transition: none !important;
     width: 100%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
 }
 
 .stButton > button:hover {
     background-color: #FF6B6B;
     color: #000000;
-    box-shadow: 4px 4px 0px #000000;
+    box-shadow: 6px 6px 0px #000000;
+    transform: none;
+    border-color: #000000;
+}
+
+/* Mechanical Press — hides shadow on click */
+.stButton > button:active {
+    box-shadow: 0px 0px 0px #000000 !important;
+    transform: translate(6px, 6px) !important;
+    background-color: #FF6B6B;
+}
+
+/* ===== DOWNLOAD BUTTONS (Vivid Yellow) ===== */
+.stDownloadButton > button,
+.stDownloadButton > button:focus {
+    background-color: #FFD93D;
+    color: #000000;
+    border: 4px solid #000000;
+    border-radius: 0px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 900;
+    font-size: 0.95rem;
+    padding: 12px 24px;
+    box-shadow: 5px 5px 0px #000000;
+    transition: none !important;
+    text-transform: uppercase;
+}
+
+.stDownloadButton > button:hover {
+    background-color: #FFD93D;
+    box-shadow: 5px 5px 0px #000000;
     transform: none;
 }
 
-.stButton > button:active {
-    box-shadow: 0px 0px 0px #000000;
-    transform: translate(4px, 4px);
+.stDownloadButton > button:active {
+    box-shadow: 0px 0px 0px #000000 !important;
+    transform: translate(5px, 5px) !important;
 }
 
-/* Input fields */
+/* ===== INPUT FIELDS ===== */
 .stTextInput > div > div > input,
-.stSelectbox > div > div,
 .stTextArea > div > div > textarea {
     border: 4px solid #000000 !important;
     border-radius: 0px !important;
     background-color: #FFFFFF !important;
     font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700;
+    box-shadow: 4px 4px 0px #000000;
 }
 
-/* Tabs */
+.stTextInput > div > div > input:focus,
+.stTextArea > div > div > textarea:focus {
+    border-color: #FF6B6B !important;
+    box-shadow: 4px 4px 0px #FF6B6B;
+}
+
+/* ===== SELECTBOX ===== */
+.stSelectbox > div > div {
+    border: 4px solid #000000 !important;
+    border-radius: 0px !important;
+    background-color: #FFFFFF !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700;
+    box-shadow: 4px 4px 0px #000000;
+}
+
+/* ===== RADIO BUTTONS ===== */
+.stRadio > div {
+    gap: 8px;
+}
+
+.stRadio > div > label {
+    background-color: #FFFFFF;
+    border: 3px solid #000000;
+    border-radius: 0px;
+    padding: 6px 14px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    box-shadow: 3px 3px 0px #000000;
+}
+
+.stRadio > div > label[data-checked="true"],
+.stRadio > div > label:has(input:checked) {
+    background-color: #FFD93D;
+    box-shadow: 3px 3px 0px #000000;
+}
+
+/* ===== TABS ===== */
 .stTabs [data-baseweb="tab-list"] {
     gap: 0px;
     border-bottom: 4px solid #000000;
+    background-color: #FFFDF5;
 }
 
 .stTabs [data-baseweb="tab"] {
     border: 4px solid #000000;
     border-bottom: none;
-    border-radius: 0px;
+    border-radius: 0px !important;
     background-color: #FFFFFF;
     font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    padding: 10px 20px;
+    font-weight: 900;
+    font-size: 0.9rem;
+    padding: 12px 24px;
     margin-right: -4px;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 
 .stTabs [aria-selected="true"] {
     background-color: #FFD93D !important;
     color: #000000 !important;
+    border-bottom: 4px solid #FFD93D !important;
 }
 
-/* Sidebar */
+.stTabs [data-baseweb="tab-highlight"] {
+    display: none;
+}
+
+.stTabs [data-baseweb="tab-border"] {
+    display: none;
+}
+
+/* Tab content area */
+.stTabs [data-baseweb="tab-panel"] {
+    background-color: #FFFFFF;
+    border: 4px solid #000000;
+    border-top: none;
+    padding: 20px;
+    box-shadow: 6px 6px 0px #000000;
+}
+
+/* ===== SIDEBAR ===== */
 section[data-testid="stSidebar"] {
     background-color: #C4B5FD;
     border-right: 4px solid #000000;
@@ -123,53 +253,132 @@ section[data-testid="stSidebar"] .stMarkdown h1,
 section[data-testid="stSidebar"] .stMarkdown h2,
 section[data-testid="stSidebar"] .stMarkdown h3 {
     color: #000000 !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transform: none !important;
 }
 
-/* Alerts */
+section[data-testid="stSidebar"] .stTextInput > div > div > input,
+section[data-testid="stSidebar"] .stTextArea > div > div > textarea {
+    background-color: #FFFFFF !important;
+    border: 3px solid #000000 !important;
+    box-shadow: 3px 3px 0px #000000;
+}
+
+/* ===== ALERTS (Success/Warning/Error) ===== */
 .stAlert {
     border: 4px solid #000000 !important;
     border-radius: 0px !important;
-    box-shadow: 4px 4px 0px #000000 !important;
+    box-shadow: 5px 5px 0px #000000 !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700 !important;
 }
 
-/* Download button */
-.stDownloadButton > button {
-    background-color: #FFD93D;
-    color: #000000;
-    border: 4px solid #000000;
-    border-radius: 0px;
-    box-shadow: 4px 4px 0px #000000;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
+div[data-testid="stSuccess"] {
+    background-color: #D4EDDA !important;
+    border-color: #000000 !important;
 }
 
-.stDownloadButton > button:active {
-    box-shadow: 0px 0px 0px #000000;
-    transform: translate(4px, 4px);
+div[data-testid="stWarning"] {
+    background-color: #FFD93D !important;
+    border-color: #000000 !important;
 }
 
-/* Markdown content blocks */
-.stMarkdown {
-    background-color: #FFFFFF;
-    border: 4px solid #000000;
-    border-radius: 0px;
-    padding: 16px;
-    box-shadow: 4px 4px 0px #000000;
-    margin-bottom: 12px;
+div[data-testid="stError"] {
+    background-color: #FF6B6B !important;
+    border-color: #000000 !important;
 }
 
-/* Radio */
-.stRadio > div {
-    gap: 8px;
-}
-
-/* Expander */
-.streamlit-expanderHeader {
+/* ===== EXPANDER ===== */
+.streamlit-expanderHeader,
+details summary {
     background-color: #C4B5FD !important;
     border: 4px solid #000000 !important;
     border-radius: 0px !important;
     font-family: 'Space Grotesk', sans-serif !important;
-    font-weight: 700 !important;
+    font-weight: 900 !important;
+    color: #000000 !important;
+    box-shadow: 4px 4px 0px #000000;
+    padding: 10px 16px !important;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+details[open] summary {
+    border-bottom: 4px solid #000000;
+}
+
+/* ===== MARKDOWN CONTENT BLOCKS ===== */
+[data-testid="stMarkdownContainer"] {
+    background-color: #FFFFFF;
+    border: 4px solid #000000;
+    border-radius: 0px;
+    padding: 20px;
+    box-shadow: 6px 6px 0px #000000;
+    margin-bottom: 16px;
+}
+
+/* ===== COLUMNS (Card-like containers) ===== */
+[data-testid="stHorizontalBlock"] > div {
+    background-color: #FFFFFF;
+    border: 4px solid #000000;
+    border-radius: 0px;
+    padding: 16px;
+    box-shadow: 5px 5px 0px #000000;
+}
+
+/* ===== DIVIDER ===== */
+hr {
+    border: none;
+    border-top: 4px solid #000000;
+    margin: 20px 0;
+}
+
+/* ===== BADGE STYLE (pill only element with radius) ===== */
+code, .stCodeBlock {
+    background-color: #FFD93D !important;
+    border: 3px solid #000000 !important;
+    border-radius: 999px !important;
+    padding: 2px 10px !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700;
+    color: #000000;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background: #FFFDF5;
+    border-left: 4px solid #000000;
+}
+::-webkit-scrollbar-thumb {
+    background: #000000;
+    border: 2px solid #FFFDF5;
+}
+
+/* ===== SPINNER OVERRIDE ===== */
+.stSpinner > div {
+    border-color: #FF6B6B !important;
+    border-top-color: #000000 !important;
+}
+
+/* ===== FORM SUBMIT BUTTON ===== */
+.stFormSubmitButton > button {
+    background-color: #FF6B6B !important;
+    color: #000000 !important;
+    border: 4px solid #000000 !important;
+    border-radius: 0px !important;
+    box-shadow: 6px 6px 0px #000000 !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+}
+
+.stFormSubmitButton > button:active {
+    box-shadow: 0px 0px 00px #000000 !important;
+    transform: translate(6px, 6px) !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -231,10 +440,40 @@ else:
 
 # ===================== STEP 7: MAIN UI =====================
 
-st.title("📺 AI YouTube Content Planner")
-st.write("Generate video ideas, SEO titles, thumbnails, scripts and schedules using AI.")
+st.markdown("""
+<div style="background-color:#FF6B6B; border:4px solid #000000; padding:6px 18px;
+     display:inline-block; box-shadow:5px 5px 0px #000000; transform:rotate(-1deg);
+     margin-bottom:4px;">
+    <span style="font-family:'Space Grotesk'; font-weight:900; font-size:0.85rem;
+          color:#000000; text-transform:uppercase; letter-spacing:0.1em;">
+        AI POWERED
+    </span>
+</div>
+""", unsafe_allow_html=True)
 
-st.subheader("📝 Enter Content Details")
+st.title("AI YouTube Content Planner")
+
+st.markdown("""
+<div style="background-color:#FFFFFF; border:4px solid #000000; padding:14px 20px;
+     box-shadow:6px 6px 0px #000000; transform:rotate(0.5deg); margin-bottom:20px;">
+    <span style="font-family:'Space Grotesk'; font-weight:900; font-size:1.1rem; color:#000000;">
+        Generate video ideas, SEO titles, thumbnails, scripts & upload schedule using AI.
+    </span>
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<div style="background-color:#C4B5FD; border:3px solid #000000; padding:4px 14px;
+     display:inline-block; box-shadow:3px 3px 0px #000000; transform:rotate(1deg);
+     margin-bottom:16px;">
+    <span style="font-family:'Space Grotesk'; font-weight:900; font-size:0.75rem;
+          color:#000000; text-transform:uppercase; letter-spacing:0.12em;">
+        NEO BRUTALISM UI
+    </span>
+</div>
+""", unsafe_allow_html=True)
+
+st.subheader("Enter Content Details")
 
 col1, col2 = st.columns(2)
 
