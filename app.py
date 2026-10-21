@@ -198,7 +198,7 @@ st.markdown("""
 # ── SESSION STATE INIT ───────────────────────────────────────────────────────
 
 _defaults = {
-    "api_key": "", "topic": "", "niche": "Education",
+    "api_key": "", "model_name": "gemini-3.5-flash", "topic": "", "niche": "Education",
     "target_audience": "Global", "video_format": "Long-form (10m+)",
     "tone": "High Energy", "content_plan": None,
     "script_data": None, "generation_done": False,
@@ -231,6 +231,36 @@ with st.sidebar:
 
     if api_key:
         os.environ["GOOGLE_API_KEY"] = api_key
+
+    model_opts = ["gemini-3.5-flash", "gemini-2.0-flash", "gemini-1.5-flash", "gemini-1.5-pro"]
+    m_idx = model_opts.index(st.session_state.model_name) if st.session_state.model_name in model_opts else 0
+    selected_model = st.selectbox("🤖 AI MODEL", model_opts, index=m_idx)
+    st.session_state.model_name = selected_model
+
+    st.markdown("---")
+    st.markdown(
+        '<p style="font-family:\'IBM Plex Mono\',monospace;font-size:.7rem;'
+        'letter-spacing:.15em;color:#00B894;margin-bottom:.4rem;">▶ DEMO / SHOWCASE</p>',
+        unsafe_allow_html=True,
+    )
+    if st.button("💡 LOAD DEMO PLAN (TEST MODE)", use_container_width=True):
+        from copy import deepcopy
+        st.session_state.topic = "AI Tools That Do 80% of My Work"
+        st.session_state.niche = "Technology"
+        st.session_state.target_audience = "Global"
+        st.session_state.video_format = "Long-form (10m+)"
+        st.session_state.tone = "High Energy"
+        st.session_state.content_plan = deepcopy(DEMO_PLAN)
+        st.session_state.script_data = deepcopy(DEMO_SCRIPT)
+        st.session_state.generation_done = True
+        st.rerun()
+
+    if st.session_state.content_plan:
+        if st.button("🗑️ RESET / CLEAR PLAN", use_container_width=True):
+            st.session_state.content_plan = None
+            st.session_state.script_data = None
+            st.session_state.generation_done = False
+            st.rerun()
 
     st.markdown("---")
     st.markdown("""
@@ -293,23 +323,133 @@ class ScriptOutline(BaseModel):
     closing_cta: str
 
 
+# ── PRE-POPULATED DEMO DATA (FOR OFFLINE / VIVA SHOWCASE) ───────────────────
+
+DEMO_PLAN = ContentPlan(
+    video_ideas=[
+        VideoIdea(title="5 AI Tools That Do 80% of My Daily Work", description="A curated walkthrough of game-changing AI apps that cut editing, writing, and research time by 80%."),
+        VideoIdea(title="Why 99% of Creators Fail with Generative AI", description="Unpacking the biggest mistakes creators make when relying on AI prompts and how to actually use LLMs effectively."),
+        VideoIdea(title="From Zero to First Video: The Complete AI Workflow", description="Step-by-step tutorial taking an idea from ChatGPT/Gemini script to final render using AI assistance."),
+        VideoIdea(title="Can AI Replace Video Editors in 2026?", description="A realistic, side-by-side comparison between manual Premiere editing and auto-caption/AI cut tools."),
+        VideoIdea(title="The Secret Prompt Formula Top YouTubers Use", description="Detailed breakdown of system prompts, role prompting, and structured output for viral hooks."),
+        VideoIdea(title="Stop Editing Thumbnails Manually — Do This Instead", description="Modern thumbnail generation techniques combining diffusion models, remove-bg, and typography."),
+        VideoIdea(title="Building an AI Content Machine on a Budget", description="Free and low-cost tools stacked together to produce 4 high-quality YouTube videos per week."),
+        VideoIdea(title="How the YouTube Algorithm Actually Treats AI Content", description="Demystifying YouTube's synthetic media policies, monetization guidelines, and audience retention."),
+        VideoIdea(title="The 3-Second Hook Masterclass for High Retention", description="Visual, verbal, and text-on-screen hooks that stop viewers from swiping away on Shorts and Long-form."),
+        VideoIdea(title="I Let Gemini Plan My Entire Channel for 30 Days", description="A 30-day experiment testing AI-generated titles, upload schedules, and retention strategies."),
+    ],
+    seo_titles=[
+        "5 Best AI Tools for YouTube Creators in 2026 (Free & Paid)",
+        "How to Use AI to Plan, Script, and Produce YouTube Videos 10x Faster",
+        "The Complete AI YouTube Workflow for Beginners: From Script to Upload",
+        "Top AI Tools for Content Creators That Actually Save Hours Every Week",
+        "How Top YouTubers Plan Their Content with Artificial Intelligence",
+    ],
+    description="In this video, we break down the ultimate AI-powered content creation workflow. From brainstorming 10x viral video ideas to generating timestamped scripts, high-retention hooks, and thumbnail concepts — discover how to leverage Google Gemini and modern Gen AI to scale your channel with consistency.\n\n⏱️ Timestamps:\n0:00 - Introduction\n1:15 - AI Idea Generation\n3:40 - Script Outlining & Retention Hooks\n7:10 - Thumbnail Concepts & SEO\n10:20 - Final Workflow Takeaways\n\n🔔 Subscribe for more tech & AI tutorials!",
+    hashtags=["#AIContentCreation", "#YouTubeAutomation", "#GoogleGemini", "#ContentCreator", "#GenerativeAI", "#Productivity", "#YouTubeGrowth", "#VideoEditing", "#LangChain", "#TechExplainer"],
+    thumbnail=ThumbnailConcept(
+        text_overlay="10X YOUR YOUTUBE WITH AI",
+        visual_concept="Split-screen: Frustrated creator with cluttered notes vs. clean glowing AI dashboard with viral analytics curve.",
+        mood="High-contrast Cyberpunk / Tech Modern with Neon Gold and Electric Blue accents",
+    ),
+    upload_days=["Tuesday", "Thursday", "Saturday"],
+    upload_time="6:00 PM IST (Evening Peak)",
+)
+
+DEMO_SCRIPT = ScriptOutline(
+    video_title="5 AI Tools That Do 80% of My Daily Work",
+    total_duration="10 - 12 Minutes",
+    hooks=[
+        RetentionHook(
+            hook_type="Visual",
+            hook_text="Host snaps fingers and a 10-hour editing timeline collapses into 10 minutes on a dual monitor setup.",
+            why_it_works="Pattern interrupt with strong visual transformation creates immediate curiosity about the time-saving payoff."
+        ),
+        RetentionHook(
+            hook_type="Verbal",
+            hook_text="If you're still spending 15 hours planning and editing a single YouTube video, you are doing it completely wrong.",
+            why_it_works="Directly challenges common creator suffering and promises a high-value alternative."
+        ),
+        RetentionHook(
+            hook_type="Text-on-Screen",
+            hook_text="HOW I SAVED 25 HOURS THIS WEEK USING 5 FREE AI TOOLS",
+            why_it_works="Bold numeric claim hooks mobile and sound-off viewers instantly during the critical 3-second window."
+        ),
+    ],
+    sections=[
+        ScriptSection(
+            timestamp="0:00 - 0:45",
+            section_title="The Hook & Problem Statement",
+            content_notes="Acknowledge the creator burnout cycle: brainstorming, writing, tag research, thumbnail design. Promise the 5-tool stack solution.",
+            broll_cue="Fast-paced montage of messy notes, Premiere render bars, clock spinning fast.",
+            cta=None
+        ),
+        ScriptSection(
+            timestamp="0:45 - 2:30",
+            section_title="Tool 1: Gemini & LangChain for Content Ideation",
+            content_notes="Demonstrate how to feed a single niche topic into a structured prompt chain to generate 10 targeted ideas in 30 seconds.",
+            broll_cue="Screen recording of YT Content Planner Pro dashboard running with gold neo-brutalist theme.",
+            cta=None
+        ),
+        ScriptSection(
+            timestamp="2:30 - 5:00",
+            section_title="Tool 2: Retention Hook Architect",
+            content_notes="Explain the psychology of the first 3 seconds: Visual vs. Verbal vs. Text-on-Screen. Show how script retention hooks keep viewers engaged.",
+            broll_cue="YouTube Studio audience retention graph showing a steep drop-off vs. a flat high-retention line.",
+            cta=None
+        ),
+        ScriptSection(
+            timestamp="5:00 - 7:30",
+            section_title="Tool 3: Automated B-roll & Caption Generators",
+            content_notes="Breakdown of auto-transcription and AI B-roll retrieval to eliminate hours of manual searching across stock footage libraries.",
+            broll_cue="Split screen: Manual timeline clipping vs. AI instant subtitle sync.",
+            cta="If you're finding this helpful, smash the subscribe button for weekly AI workflows!"
+        ),
+        ScriptSection(
+            timestamp="7:30 - 9:30",
+            section_title="Tool 4 & 5: Thumbnail Testing & Schedule Optimization",
+            content_notes="Cover high-contrast thumbnail ideation, bold typography, and data-driven upload timing based on audience geography.",
+            broll_cue="Side-by-side click-through-rate (CTR) comparison: 3.2% vs. 9.8%.",
+            cta=None
+        ),
+        ScriptSection(
+            timestamp="9:30 - 11:00",
+            section_title="Summary & Execution Plan",
+            content_notes="Review the 5-tool workflow. Remind creators that AI is an amplifier for human creativity, not a complete replacement.",
+            broll_cue="Clean checklist graphic ticking off each step from Ideation to Publish.",
+            cta=None
+        ),
+    ],
+    closing_cta="Check the description to download the free planning template, and watch this next video to master YouTube SEO!"
+)
+
+
 # ── HELPERS ──────────────────────────────────────────────────────────────────
 
 def build_llm(key: str) -> ChatGoogleGenerativeAI:
+    model_name = st.session_state.get("model_name", "gemini-3.5-flash")
     return ChatGoogleGenerativeAI(
-        model="gemini-3.5-flash",
+        model=model_name,
         google_api_key=key,
         temperature=0.85,
     )
 
 def clean_json(raw: str) -> dict:
-    """Strip markdown fences and parse JSON."""
+    """Strip markdown fences and parse JSON robustly."""
     raw = raw.strip()
-    if raw.startswith("```"):
+    if "```" in raw:
         parts = raw.split("```")
-        raw = parts[1] if len(parts) > 1 else raw
-        if raw.startswith("json"):
-            raw = raw[4:]
+        for part in parts:
+            part = part.strip()
+            if part.startswith("json"):
+                part = part[4:].strip()
+            if "{" in part and "}" in part:
+                raw = part
+                break
+    start = raw.find("{")
+    end = raw.rfind("}")
+    if start != -1 and end != -1:
+        raw = raw[start : end + 1]
     return json.loads(raw.strip())
 
 def badge(label: str, bg: str = "#E8C547", fg: str = "#0F0F0F") -> str:
@@ -508,7 +648,20 @@ with c5:
 st.markdown("<br>", unsafe_allow_html=True)
 
 if not api_key:
-    st.info("👈 Enter your Google API Key in the sidebar to unlock the generator.")
+    st.info("👈 Enter your Google API Key in the sidebar to generate live with Gemini AI.")
+    col_demo, _ = st.columns([1, 2])
+    with col_demo:
+        if st.button("💡 LOAD DEMO PLAN (OFFLINE / VIVA MODE)", use_container_width=True):
+            from copy import deepcopy
+            st.session_state.topic = "AI Tools That Do 80% of My Work"
+            st.session_state.niche = "Technology"
+            st.session_state.target_audience = "Global"
+            st.session_state.video_format = "Long-form (10m+)"
+            st.session_state.tone = "High Energy"
+            st.session_state.content_plan = deepcopy(DEMO_PLAN)
+            st.session_state.script_data = deepcopy(DEMO_SCRIPT)
+            st.session_state.generation_done = True
+            st.rerun()
 else:
     btn_col, _ = st.columns([1, 3])
     with btn_col:
@@ -745,22 +898,28 @@ if st.session_state.content_plan:
     s_col, _ = st.columns([1, 3])
     with s_col:
         if st.button("📜 GENERATE SCRIPT + HOOKS", use_container_width=True):
-            idx = idea_labels.index(chosen_label)
-            chosen_title = plan.video_ideas[idx].title
-            with st.spinner("✍️ Writing your script outline…"):
-                try:
-                    script = run_script_chain(
-                        api_key,
-                        chosen_title,
-                        st.session_state.topic,
-                        st.session_state.video_format,
-                        st.session_state.tone,
-                        st.session_state.target_audience,
-                    )
-                    st.session_state.script_data = script
-                    st.rerun()
-                except Exception as e:
-                    st.error(f"Script generation failed: {e}")
+            if not api_key:
+                from copy import deepcopy
+                st.session_state.script_data = deepcopy(DEMO_SCRIPT)
+                st.success("✓ Loaded script outline preview (Demo Mode). Add API Key for live AI generation.")
+                st.rerun()
+            else:
+                idx = idea_labels.index(chosen_label)
+                chosen_title = plan.video_ideas[idx].title
+                with st.spinner("✍️ Writing your script outline…"):
+                    try:
+                        script = run_script_chain(
+                            api_key,
+                            chosen_title,
+                            st.session_state.topic,
+                            st.session_state.video_format,
+                            st.session_state.tone,
+                            st.session_state.target_audience,
+                        )
+                        st.session_state.script_data = script
+                        st.rerun()
+                    except Exception as e:
+                        st.error(f"Script generation failed: {e}")
 
     # ── SCRIPT OUTPUT ─────────────────────────────────────────────────────────
 
@@ -883,6 +1042,6 @@ st.markdown("---")
 st.markdown("""
 <div style="text-align:center;font-family:'IBM Plex Mono',monospace;font-size:.68rem;
             padding:.8rem 0;color:#2D3748;letter-spacing:.1em;">
-  YT CONTENT PLANNER PRO &nbsp;·&nbsp; STREAMLIT + LANGCHAIN + GEMINI 2.5 FLASH
+  YT CONTENT PLANNER PRO &nbsp;·&nbsp; STREAMLIT + LANGCHAIN + GOOGLE GEMINI
 </div>
 """, unsafe_allow_html=True)
